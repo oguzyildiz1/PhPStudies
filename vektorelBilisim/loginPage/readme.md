@@ -1,6 +1,6 @@
 <h1>Login Ekranı</h1>
 <h2>Yapılanlar</h2>
-<img src="./images/uye_giri_ekrani.png" width="500px">
+<img src="./images/uye_giri_ekrani.png" width="300px">
 <p>Login ekranından kullanıcı verilerini alıp, kaydet.php dosyasına gönderirir</p>
 <p>Gelen veriler var mı ve boş değil mi diye kontrol eder. Değilse, login ekranına dönüp alert mesajı verir</p>
 
