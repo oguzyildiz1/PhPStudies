@@ -1,5 +1,5 @@
 <?php
-
+define("_FILEDIR", "db/data.csv"); // defines a global constant
 
 // post ile gelen bir veri var mı?
 
@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_REQUEST["islem"])) { // isset ile değişken atanmış mı ona bakılıyor
         switch ($_REQUEST["islem"]) { // atanmışsa
             case "uyeKayit": // value uye kayit ise buradan devam edecek
-                // gelen veriler varsa ve boş değilse
+                //  --- 1. gelen veriler varsa ve boş değilse ---
                 if (
                     $_POST["kullaniciAdi"] and !empty($_POST["kullaniciAdi"]) and
                     $_POST["kullaniciSoyadi"] and !empty($_POST["kullaniciSoyadi"]) and
@@ -16,7 +16,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_POST["kullaniciSifre"] and !empty($_POST["kullaniciSifre"]) and
                     $_POST["kullaniciSifreTekrar"] and !empty($_POST["kullaniciSifreTekrar"])
                 ) {
-                    echo "bütün veriler var!";
+                    //  ---- 2. sifre kontrol  ----- 
+                    if ($_POST["kullaniciSifre"] == $_POST["kullaniciSifreTekrar"]){
+                        
+                        // ----- dosyaya yazma işlemi  ----
+                        // boşluklardan arınıdırıp, tagleri temizleyip kaydettik
+                        $ad = trim(strip_tags($_POST["kullaniciAdi"]));
+                        $soyad = trim(strip_tags($_POST["kullaniciSoyadi"]));
+                        $email = trim(strip_tags($_POST["kullaniciEmail"]));
+                        $sifre = md5($_POST["kullaniciSifre"]);
+
+                        // --- dosyaya kaydetme ----
+                        $yaz = $ad . ";" . $soyad. ";" . $email.";" . $sifre."\n"; // yazılacak texti $yaz değişkenine birleştirip koyduk
+                        $dosyaAc = fopen(_FILEDIR, "a+"); // yazılacak dosyayı a+ ile açtık
+                        $sonuc = fwrite($dosyaAc, $yaz); // dosyanın içine $yaz textini yazdık.
+                        fclose($dosyaAc); // acılan dosyayı fclose ile kapattık
+
+                    }else{
+                        header("location: index.php?q=2");
+                    }
+                    
                 } else { // eksik veri varsa yada boş gelmişse
                     //echo "bütün veriler yok!";
                     header("location: index.php?q=1"); // index.php ye q=1 get verisi ile dönüyor

@@ -6,3 +6,7 @@
     </li>
     <li></li>
 </ol>
+<h2>Php Commands</h2>
+<p><strong>define("_FILEDIR", "db/data.csv")</strong> defines a global variable</p>
+<p>touch() : creates a file with extension</p>
+<p>mkdir() : creates a folder</p>

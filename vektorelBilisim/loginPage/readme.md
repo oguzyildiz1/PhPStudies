@@ -8,3 +8,10 @@
 <h3>Kalıdığım yer:<h3>
 <p>02-05-2023 son 5 dakika kaldı</p>
 <p>Hata mesajı liste şeklinde kullanıcacak</p>
+
+<h2>Yapılanlar 19 Mart</h2>
+<p>hata kodlarnını liste olarak ayarladık</p>
+
+<h2></h2>
+<p>dosya yazma işlemi yapıldı</p>
+25. dakikada kalındı

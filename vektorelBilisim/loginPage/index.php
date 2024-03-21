@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <form action="kaydet.php" method="POST">
         <div class="container">
             <div class="row">
@@ -21,20 +20,26 @@
                     // get ile gelen veri var mı?
                     // varsa switch case ile kontrol et
                     if (isset($_GET["q"])) {
+                        // --- hata kodlarını oluşrutma ----
                         switch ($_GET["q"]) {
+                            //eksik veri var mesajı vereceğiz
                             case 1:
-                                //eksik veri var mesajı vereceğiz
-                                echo <<<html
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Kullanıcı verileri eksik!</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                                html;
+                                $mesaj = ["alert-danger","Kullanici verileri eksik!"];
                                 break;
-
+                            case 2:
+                                $mesaj =["alert-danger", "Şifreler uyuşmuyor!"];
+                                break;
                             default:
+                                // break;
                                 #code
                         }
+                        // ----- alert kısmı  ------
+                        echo <<<html
+                        <div class="alert $mesaj[0] alert-dismissible fade show" role="alert">
+                            <strong>Dikkat!</strong> $mesaj[1]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        html;
                     }
                     ?>
                     <!-- alert ends -->
