@@ -7,6 +7,29 @@
     <li></li>
 </ol>
 <h2>Php Commands</h2>
-<p><strong>define("_FILEDIR", "db/data.csv")</strong> defines a global variable</p>
+<p><strong>define("_FILEDIR", "db/data.csv")</strong> defines a global constant</p>
 <p>touch() : creates a file with extension</p>
 <p>mkdir() : creates a folder</p>
+
+<h2>Resim ekleme</h2>
+<p>Resimler upload edilene kadar temp klasöründe barındırılıyor</p>
+
+<h3>Resim ekleme adımları 1</h3>
+<ol>
+    <ul>1. form etiketine: enctype="multipart/formt-data" ekleniyor.</ul>
+    <ul>2. kaydet.php'de is $_FILES küresel değişkeni ile alınıyor.</ul>
+    <ul>3. error key'e göre index.php'de mesaj veriliyor.</ul>
+    <ul>3.1 Eğer error == 0 ise (hatasız ise) 5. adıma git </ul>
+    <ul>3.2 Eğer error !=  ise (hatalı ise) 4. adıma git </ul>
+    <ul>4.1 hata kodunu index.php'ye gönder </ul>
+    <ul>4.2 index.php'de hata koduna göre mesaj yaz. </ul>
+    <ul>5. Boyut sorgulaması</ul>
+    <ul>5.1 Dosya boyutunu(byte) kilobyte'a çevir</ul>
+    <ul>5.2 Eğer dosya 600 kb'dan küçük ise 6. adıma git</ul>
+    <ul>5.3 Eğer dosya 600 kb'dan büyük ise 7. adıma git</ul>
+    <ul>6. Resimleri adlandırma başlığına git</ul>
+    <ul>7. Index.php'ye dönerek boyut büyük hatası ver </ul>
+</ol>
+<h3>Resimleri Adlandırma</h3>
+<p>Resimler adlandırıp upload ediliyor.</p>
+<p>Burada kaldım</p>

@@ -1,5 +1,22 @@
 <?php
 define("_FILEDIR", "db/data.csv"); // defines a global constant
+print_r($_FILES);
+
+// --- resim ekleme algoritması --- (notlar.md)
+
+// Error sorgulama
+if($_FILES["kullaniciDosya"]["error"] == 0){ // error yok ise
+    // boyut sorgulaması (5. adım)
+    if(($_FILES["kullaniciDosya"]["size"]/1024) <= 600 ){ // 600 kb'den az ise
+        print($_FILES["kullaniciDosya"]["size"]/1024);
+    }else{
+        header("location: index.php?q=4"); // error code 4
+    }
+}else{
+    header("location: index.php?q=3"); // error code 3
+}
+
+exit();
 
 // post ile gelen bir veri var mı?
 
@@ -52,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 /*
-echo "<pre>";
+echo "<pre>"; 
 print_r($_SERVER);
 echo "</pre>";
 */

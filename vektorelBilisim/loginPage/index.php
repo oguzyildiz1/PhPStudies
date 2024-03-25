@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>Login Page</title>
-
 </head>
 
 <body>
-    <form action="kaydet.php" method="POST">
+    <form action="kaydet.php" method="POST" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <!-- üye olma starts -->
@@ -18,16 +17,22 @@
                     <!-- alert starts -->
                     <?php
                     // get ile gelen veri var mı?
-                    // varsa switch case ile kontrol et
                     if (isset($_GET["q"])) {
-                        // --- hata kodlarını oluşrutma ----
+                        // --- switch case ile hata kodlarını oluşrutma ----
                         switch ($_GET["q"]) {
                             //eksik veri var mesajı vereceğiz
                             case 1:
                                 $mesaj = ["alert-danger","Kullanici verileri eksik!"];
                                 break;
                             case 2:
+                                // hatalı şifre mesajı
                                 $mesaj =["alert-danger", "Şifreler uyuşmuyor!"];
+                                break;
+                            case 3:
+                                $mesaj =["alert-danger","Resim yüklenemedi!"];
+                                break;
+                            case 4:
+                                $mesaj =["alert-warning","Resim boyutu büyük!"];
                                 break;
                             default:
                                 // break;
@@ -53,6 +58,10 @@
                     </div>
                     <div class="mb-2">
                         <input type="email" class="form-control" name="kullaniciEmail" placeholder="Kullanıcı E-mail">
+                    </div>
+                    <!-- dosya ekleme kısmı -->
+                    <div class="mb-2">
+                        <input type="file" class="form-control" name="kullaniciDosya">
                     </div>
                     <div class="mb-2">
                         <input type="password" class="form-control" name="kullaniciSifre" placeholder="Kullanıcı Sifre">
