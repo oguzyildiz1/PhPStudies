@@ -4,10 +4,6 @@ $dosyaTip = [".png" => "image/png", ".jpg" => "image/jpg", ".jpeg" => "image/jpe
 
 echo in_array("image/png", $dosyaTip);
 
-//  -------------------   self link oluşturma   --------------------------
-
-
-
 /*
     if(file_exists("db")){
         if(file_exists("db/data.csv")){

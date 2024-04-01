@@ -29,7 +29,19 @@
     <ul>5.3 Eğer dosya 600 kb'dan büyük ise 7. adıma git</ul>
     <ul>6. Resimleri adlandırma başlığına git</ul>
     <ul>7. Index.php'ye dönerek boyut büyük hatası ver </ul>
+    <ul>8. Uzantı kontrolü</ul>
+    <ul>8.1 dosya uzantılarını ve tiplerini belirten array oluştur (kaydet.php)</ul>
+    <ul>8.2 Eğer yüklenen dosya tipi array'de yoksa 8.2.1'e git, varsa 8.3'e git </ul>
+    <ul>8.2.1 Index.php'ye yönlendir, hata kodu ("yanlış dosya tipi") olarak bas </ul>
+    // ---   self link oluşturma !!! -------- 
+    // *** video : 1:20:00 (2023-02-18 (php))
+    // self link  bana özel orijinal bir dosya isimleme metodu
+    // icerisinde, microtime(), md5() vs kullanılıyor.
+    // aynı anda 100 kullınıcı bile kaydetse, dosya isimleri ayrı ayrı oluyor. 
+    <ul>9. Self link oluşturma </ul>
+    <ul>9. Self link oluşturma </ul>
 </ol>
+
 <h3>Resimleri Adlandırma</h3>
 <p>Resimler adlandırıp upload ediliyor.</p>
 <p>Burada kaldım</p>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="kaydet.php" method="POST" enctype="multipart/form-data">
+    <form action="./kaydet.php" method="POST" enctype="multipart/form-data"> <!-- degisen kısım -->
         <div class="container">
             <div class="row">
                 <!-- üye olma starts -->
@@ -20,19 +20,22 @@
                     if (isset($_GET["q"])) {
                         // --- switch case ile hata kodlarını oluşrutma ----
                         switch ($_GET["q"]) {
-                            //eksik veri var mesajı vereceğiz
+                                //eksik veri var mesajı vereceğiz
                             case 1:
-                                $mesaj = ["alert-danger","Kullanici verileri eksik!"];
+                                $mesaj = ["alert-danger", "Kullanici verileri eksik!"];
                                 break;
                             case 2:
                                 // hatalı şifre mesajı
-                                $mesaj =["alert-danger", "Şifreler uyuşmuyor!"];
+                                $mesaj = ["alert-danger", "Şifreler uyuşmuyor!"];
                                 break;
                             case 3:
-                                $mesaj =["alert-danger","Resim yüklenemedi!"];
+                                $mesaj = ["alert-danger", "Resim yüklenemedi!"];
                                 break;
                             case 4:
-                                $mesaj =["alert-warning","Resim boyutu büyük!"];
+                                $mesaj = ["alert-warning", "Resim boyutu büyük!"];
+                                break;
+                            case 5:
+                                $mesaj = ["alert-danger", "İstenmeyen dosya tipi! Dosya uzantısı (.jpg, .jpeg, .png, .gif) şeklinde olmalıdır."];
                                 break;
                             default:
                                 // break;

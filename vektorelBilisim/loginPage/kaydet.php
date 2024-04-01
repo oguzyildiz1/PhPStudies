@@ -1,18 +1,26 @@
 <?php
 define("_FILEDIR", "db/data.csv"); // defines a global constant
+$dosyaTip = [".png" => "image/png", ".jpg" => "image/jpg", ".jpeg" => "image/jpeg", ".gif" => "image/gif"]; // alg 8.1
+
 print_r($_FILES);
+echo "<hr />";
 
 // --- resim ekleme algoritması --- (notlar.md)
 
 // Error sorgulama
-if($_FILES["kullaniciDosya"]["error"] == 0){ // error yok ise
+if ($_FILES["kullaniciDosya"]["error"] == 0) { // error yok ise
     // boyut sorgulaması (5. adım)
-    if(($_FILES["kullaniciDosya"]["size"]/1024) <= 600 ){ // 600 kb'den az ise
-        print($_FILES["kullaniciDosya"]["size"]/1024);
-    }else{
-        header("location: index.php?q=4"); // error code 4
+    if (($_FILES["kullaniciDosya"]["size"] / 1024) <= 600) { // 600 kb'den az ise
+        // alg 8.2
+        if (in_array($_FILES["kullaniciDosya"]["type"], $dosyaTip)) { // dosya tipi resim mi? 
+            print($_FILES["kullaniciDosya"]["type"]);
+        } else {
+            header("location: index.php?q=5"); // alg 8.2.1 değilse hata kodu
+        }
+    } else {
+        header("location: index.php?q=4"); // error code 4 size
     }
-}else{
+} else {
     header("location: index.php?q=3"); // error code 3
 }
 
@@ -34,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_POST["kullaniciSifreTekrar"] and !empty($_POST["kullaniciSifreTekrar"])
                 ) {
                     //  ---- 2. sifre kontrol  ----- 
-                    if ($_POST["kullaniciSifre"] == $_POST["kullaniciSifreTekrar"]){
-                        
+                    if ($_POST["kullaniciSifre"] == $_POST["kullaniciSifreTekrar"]) {
+
                         // ----- dosyaya yazma işlemi  ----
                         // boşluklardan arınıdırıp, tagleri temizleyip kaydettik
                         $ad = trim(strip_tags($_POST["kullaniciAdi"]));
@@ -44,15 +52,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $sifre = md5($_POST["kullaniciSifre"]);
 
                         // --- dosyaya kaydetme ----
-                        $yaz = $ad . ";" . $soyad. ";" . $email.";" . $sifre."\n"; // yazılacak texti $yaz değişkenine birleştirip koyduk
+                        $yaz = $ad . ";" . $soyad . ";" . $email . ";" . $sifre . "\n"; // yazılacak texti $yaz değişkenine birleştirip koyduk
                         $dosyaAc = fopen(_FILEDIR, "a+"); // yazılacak dosyayı a+ ile açtık
                         $sonuc = fwrite($dosyaAc, $yaz); // dosyanın içine $yaz textini yazdık.
                         fclose($dosyaAc); // acılan dosyayı fclose ile kapattık
 
-                    }else{
+                    } else {
                         header("location: index.php?q=2");
                     }
-                    
                 } else { // eksik veri varsa yada boş gelmişse
                     //echo "bütün veriler yok!";
                     header("location: index.php?q=1"); // index.php ye q=1 get verisi ile dönüyor
