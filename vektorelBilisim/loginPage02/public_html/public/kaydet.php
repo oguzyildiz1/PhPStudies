@@ -1,7 +1,9 @@
 <?php
 define("_FILEDIR", "../db/data.csv"); // defines a global constant
 
-$is_uye_kayit = 0;
+$islem_kayit_mi = 0;
+$gelen_veri_var_mi = 0;
+$sifre_uyusuyor_mu = 0;
 
 $dosyaTip = [".png" => "image/png", ".jpg" => "image/jpg", ".jpeg" => "image/jpeg", ".gif" => "image/gif"]; // alg 8.1
 
@@ -44,19 +46,18 @@ if ($_FILES["kullaniciDosya"]["error"] == 0) { // error yok ise
 
 // post ile gelen bir veri var mı?
 
-//fonksiyon 1: veri gelmişmi? (isset)
 
 
-//fonksiyon 2:  gelen veri boş mu değil mi?
 
-// fonksiyon 3 sifre kontrol 
-#gelen şifre ve tekrar şifre eş mi?
+
+
+
 
 // 4. fonk boşluklardan arınıdırıp, tagleri temizle
 
 // 5. fonk verileri dosyaya kayıt et
 
-
+//fonksiyon 1: veri gelmişmi? (isset)
 function islemTipiKontrolEt()
 {
     # $arg1 == "uyeKayit" olması gerekiyor
@@ -64,8 +65,7 @@ function islemTipiKontrolEt()
         $islem_tipi = $_REQUEST["islem"];
         switch ($islem_tipi) {
             case "uyeKayit":
-                global $is_uye_kayit;
-                $is_uye_kayit = 1; // islem uyekayitmış
+                return true; // islem tipini geri döndürüyoruz
                 break;
             default:
                 header("location: ../index.php");
@@ -75,16 +75,76 @@ function islemTipiKontrolEt()
     }
 }
 
+//fonksiyon 2:  gelen veri boş mu değil mi?
+function gelenVeriVarMi()
+{
+    if (
+        $_POST["kullaniciAdi"] and !empty($_POST["kullaniciAdi"]) and
+        $_POST["kullaniciSoyadi"] and !empty($_POST["kullaniciSoyadi"]) and
+        $_POST["kullaniciEmail"] and !empty($_POST["kullaniciEmail"]) and
+        $_POST["kullaniciSifre"] and !empty($_POST["kullaniciSifre"]) and
+        $_POST["kullaniciSifreTekrar"] and !empty($_POST["kullaniciSifreTekrar"])
+    ) {
+        return true;
+    } else {
+        header("location: ../index.php?q=1");
+    }
+}
+
+// fonksiyon 3 sifre kontrol gelen şifre ve tekrar şifre eş mi?
+function sifreKontrolEt()
+{
+    if ($_POST["kullaniciSifre"] == $_POST["kullaniciSifreTekrar"]) {
+        return true;
+    } else {
+        header("location: ../index.php?q=2");
+    }
+}
+
+// boşluklardan arındırılıp, tagler temizlenecek
+function verileriTemizleme()
+{
+    $veri_list_temiz = array();
+    foreach ($_REQUEST as $veri) {
+        // üyeKayıt dışındaki tüm verileri listeye kaydediyor.
+        if ($veri == "uyeKayit") {
+            continue;
+        }
+        $veri_temiz = strip_tags($veri);
+        $veri_temiz = trim($veri_temiz);
+        array_push($veri_list_temiz, $veri_temiz);
+    }
+
+    return $veri_list_temiz;
+}
+
+function veriEkranaBas()
+{
+    foreach ($_REQUEST as $xxx) {
+        echo "$xxx <br />";
+    }
+}
+/* ----------- ana kontroller starts ------------ */
+
+#post ile gelen veri varsa bütün fonksiyonlar buradan çağıralacak
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    #post ile gelen veri varsa bütün fonksiyonlar buradan çağıralacak
     // check the process type(islem)
-    islemTipiKontrolEt();
-    if ($is_uye_kayit == 1) {
-        echo "islem uye kayit";
+    $islem_kayit_mi = islemTipiKontrolEt();
+    $gelen_veri_var_mi = gelenVeriVarMi();
+    $sifre_uyusuyor_mu = sifreKontrolEt();
+
+    if ($islem_kayit_mi and $gelen_veri_var_mi and $sifre_uyusuyor_mu) {
+        echo "islemler oldu <br />";
+        veriEkranaBas();
+        $veri_list = verileriTemizleme();
+        /************ *************** ********************* */
+        /********* kaldım *************** */
     }
 } else {
     header("location: ../index.php");
 }
+
+/* ----------- ana kontroller end ------------ */
 
 exit();
 

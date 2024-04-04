@@ -19,12 +19,18 @@
 <h2>25 mart</h2>
 <p>Resim yükleme 1</p>
 
+<hr />
 <h2>Fonksiyonlar ile çalışma</h2>
-<p>Bu versiyon fonksiyonlar ile yazılmıştır</p>
+<p><strong>LoginPage02: </strong>Bu versiyon fonksiyonlar ile yazılacak</p>
 
 <h4>Kaldığım yer</h4>
 <img src="./kaldigim_yer.png" alt="kaldığım yer" width="200"/>
 <p>Artık fonksiyonlar yazarak devam edilecek</p>
 <p>Her fonksiyon için de bir test yazılacak</p>
+
+<h4>Yapılanlar </h4>
+<img src="./kaldigim_yer02.png" alt="kaldığım yer" width="200"/>
+<p>Fonksiyonlar yazıldı, en son trim, strip_tags fonksiyonları yazıldı</p>
+<p></p>
 
 
