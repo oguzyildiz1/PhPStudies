@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    overflow-y: hidden;
+}
+
+.container {
+    margin: 16px;
+    width: 500px;
+    height: 500px;
+    border: 1px solid green;
+    position: relative;
+    background-color: rgb(200, 245, 203);
+}
+
+.container-new {
+    height: 100px;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-new h3 {
+    display: block;
+}
+
+.container-new div {
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    margin: 5px;
+}
+
+.animated-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid green;
+    background-color: yellow;
+}
