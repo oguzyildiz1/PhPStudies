@@ -33,4 +33,7 @@
 <p>Fonksiyonlar yazıldı, en son trim, strip_tags fonksiyonları yazıldı</p>
 <p></p>
 
+<h4>Refactoring</h4>
+<p>Kod, guard metoduna göre yeniden yazılacak</p>
+
 
