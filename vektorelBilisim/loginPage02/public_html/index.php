@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/mainPage.css">
     <title>Login Page</title>
 </head>
 
@@ -13,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <!-- üye olma starts -->
-                <div class="col-lg-6">
+                <div class="col-lg-6 container-uyelik">
                     <!-- alert starts -->
                     <?php
                     // get ile gelen veri var mı?
@@ -36,6 +37,8 @@
                                 break;
                             case 5:
                                 $mesaj = ["alert-danger", "İstenmeyen dosya tipi! Dosya uzantısı (.jpg, .jpeg, .png, .gif) şeklinde olmalıdır."];
+                            case 6:
+                                $mesaj = ["alert-danger", "Dosya seçilmedi!"];
                                 break;
                             default:
                                 // break;
@@ -80,7 +83,7 @@
                 </div>
                 <!-- üye olma ends -->
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 container-uye-giris">
                     <h2 class="mb-3">Giriş Yap</h2>
                 </div>
             </div>

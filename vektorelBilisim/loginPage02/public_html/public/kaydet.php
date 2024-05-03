@@ -1,5 +1,5 @@
 <?php
-define("_FILEDIR", "../db/data.csv"); // defines a global constant
+define("_FILEDIR", "../../db/data.csv"); // defines a global constant
 
 $islem_kayit_mi = 0;
 $gelen_veri_var_mi = 0;
@@ -7,14 +7,7 @@ $sifre_uyusuyor_mu = 0;
 
 $dosyaTip = [".png" => "image/png", ".jpg" => "image/jpg", ".jpeg" => "image/jpeg", ".gif" => "image/gif"]; // alg 8.1
 
-print_r($_FILES);
 echo "<hr />";
-
-// print_r($_SERVER[""]);
-// echo $_SERVER["REQUEST_METHOD"];
-
-// print_r($_POST);
-
 
 
 // --- resim ekleme algoritması --- (notlar.md)
@@ -42,20 +35,12 @@ if ($_FILES["kullaniciDosya"]["error"] == 0) { // error yok ise
 
 
 
-// ------------ kullanıcı veri işlemleri starts --------------------
-
+// ------------ kullanıcı veri işlemleri starts ---
 // post ile gelen bir veri var mı?
-
-
-
-
-
-
-
 
 // 4. fonk boşluklardan arınıdırıp, tagleri temizle
 
-// 5. fonk verileri dosyaya kayıt et
+// 5. fonk verileri dosyaya kaydet
 
 //fonksiyon 1: veri gelmişmi? (isset)
 function islemTipiKontrolEt()
@@ -118,6 +103,7 @@ function verileriTemizleme()
     return $veri_list_temiz;
 }
 
+
 function veriEkranaBas()
 {
     foreach ($_REQUEST as $xxx) {
@@ -137,6 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "islemler oldu <br />";
         veriEkranaBas();
         $veri_list = verileriTemizleme();
+        echo "<br /> temiz list:";
+        print_r($veri_list);
         /************ *************** ********************* */
         /********* kaldım *************** */
     }
@@ -146,83 +134,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 /* ----------- ana kontroller end ------------ */
 
-exit();
+/* ----- dosya yazma işlemi start ---- */
 
+function dosyaYazma($liste)
+{
+    $ad = $liste[0];
+    $soyad = $liste[1];
+    $email = $liste[2];
+    $sifre = md5($liste[3]);
+    $yaz = $ad . ";" . $soyad . ";" . $email . ";" . $sifre . "\n";
+    echo "<br />" . $yaz;
+    $dosyaAc = fopen(_FILEDIR, "a+");
+    $sonuc = fwrite($dosyaAc, $yaz);
+    fclose($dosyaAc);
+    echo "<br /> veri dosyaya kaydedildi.";
+}
 
+#temizlenmiş verileri dosyaya yazma
+# $veri_list yazılacak liste 
+dosyaYazma($veri_list);
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     // islem türüne göre aşağıda işlem yapılacak
-//     if (isset($_REQUEST["islem"])) { // isset ile değişken atanmış mı ona bakılıyor
-//         switch ($_REQUEST["islem"]) { // atanmışsa
-//             case "uyeKayit": // value uye kayit ise buradan devam edecek
-//                 //  --- 1. gelen veriler varsa ve boş değilse ---
-//                 if (
-//                     $_POST["kullaniciAdi"] and !empty($_POST["kullaniciAdi"]) and
-//                     $_POST["kullaniciSoyadi"] and !empty($_POST["kullaniciSoyadi"]) and
-//                     $_POST["kullaniciEmail"] and !empty($_POST["kullaniciEmail"]) and
-//                     $_POST["kullaniciSifre"] and !empty($_POST["kullaniciSifre"]) and
-//                     $_POST["kullaniciSifreTekrar"] and !empty($_POST["kullaniciSifreTekrar"])
-//                 ) {
-//                     //  ---- 2. sifre kontrol  ----- 
-//                     if ($_POST["kullaniciSifre"] == $_POST["kullaniciSifreTekrar"]) {
+/* ----- dosya yazma işlemi ends ---- */
 
-//                         // ----- dosyaya yazma işlemi  ----
-//                         // boşluklardan arınıdırıp, tagleri temizleyip kaydettik
-//                         $ad = trim(strip_tags($_POST["kullaniciAdi"]));
-//                         $soyad = trim(strip_tags($_POST["kullaniciSoyadi"]));
-//                         $email = trim(strip_tags($_POST["kullaniciEmail"]));
-//                         $sifre = md5($_POST["kullaniciSifre"]);
-
-//                         // --- dosyaya kaydetme ----
-//                         $yaz = $ad . ";" . $soyad . ";" . $email . ";" . $sifre . "\n"; // yazılacak texti $yaz değişkenine birleştirip koyduk
-//                         $dosyaAc = fopen(_FILEDIR, "a+"); // yazılacak dosyayı a+ ile açtık
-//                         $sonuc = fwrite($dosyaAc, $yaz); // dosyanın içine $yaz textini yazdık.
-//                         fclose($dosyaAc); // acılan dosyayı fclose ile kapattık
-
-//                     } else {
-//                         header("location: index.php?q=2");
-//                     }
-//                 } else { // eksik veri varsa yada boş gelmişse
-//                     //echo "bütün veriler yok!";
-//                     header("location: index.php?q=1"); // index.php ye q=1 get verisi ile dönüyor
-//                 }
-//                 break;
-//             default:
-//                 header("location: index.php");
-//         }
-//     } else {
-//         header("location: index.php");
-//     }
-// } else {
-//     header("location: index.php");
-// }
-// --------------- kullanıcı veri işlemleri ends ----------------------
-
-/*
-echo "<pre>"; 
-print_r($_SERVER);
-echo "</pre>";
-*/
-/*
-print_r($_REQUEST);
+/*---- resim kaydetme starts ----- */
 echo "<hr />";
-*/
+echo "<h3>Dosya İşlemleri</h3>";
 
-/*
-if ($_REQUEST["islem"] == "uyeKayit") {
-    echo "Kayit islemi";
-} else {
-    echo "Kayit islemi değil";
+if ($_FILES['kullaniciDosya']['error'] === 4) {
+    header("location: ../index.php?q=6"); // dosya seçilmedi
 }
-*/ 
+
+echo "dosya boyutu: " . $_FILES['kullaniciDosya']['size'] . " bytes || " . round($_FILES['kullaniciDosya']['size'] / 1024) . " kilobytes";
 
 
-
-/*
-print_r($_GET);
-echo "<br />";
-
-foreach ($_GET as $value) {
-    echo "{$value}" . "<br />";
-}
-*/
+// if($_FILES['kullaniciDosya']['size'])

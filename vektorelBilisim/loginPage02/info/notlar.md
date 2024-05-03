@@ -13,6 +13,7 @@
 
 <h2>Resim ekleme</h2>
 <p>Resimler upload edilene kadar temp klasöründe barındırılıyor</p>
+<p>$_FILES küresel değişkeni ile dosya yükleme yapılıyor.</p>
 
 <h3>Resim ekleme adımları 1</h3>
 <ol>

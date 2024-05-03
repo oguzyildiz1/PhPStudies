@@ -34,6 +34,6 @@
 <p></p>
 
 <h4>Refactoring</h4>
-<p>Kod, guard metoduna göre yeniden yazılacak</p>
+<p>Kod, guard metoduna göre yeniden yazılacak yapıldı</p>
 
 
