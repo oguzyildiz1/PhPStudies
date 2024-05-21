@@ -1,12 +1,13 @@
 body {
     background-color: rgb(192, 192, 192);
-    background-color: rgb(255, 209, 209);
     color: rgb(28, 28, 28);
 }
 
 .main-container {
+    padding: 20px;
     width: 1000px;
-    border: 5px solid gray;
+    /* border: 5px solid gray; */
+    border-radius: 5px;
 }
 
 table {

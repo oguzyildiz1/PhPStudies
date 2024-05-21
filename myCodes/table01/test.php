@@ -14,7 +14,7 @@ $liste = [["Oğuzhan", "Yıldız", "1983"], ["Orhan", "Yıldız", "1986"], ["Gü
 
 
     <div class="main-container">
-        <table>
+        <table id="kisiler">
             <tr>
                 <th>isim</th>
                 <th>Soy İsim</th>
@@ -33,7 +33,8 @@ $liste = [["Oğuzhan", "Yıldız", "1983"], ["Orhan", "Yıldız", "1986"], ["Gü
             ?>
         </table>
     </div>
-
+    <hr />
+    <div id="info"></div>
 
     <script src="./test.js"></script>
 </body>

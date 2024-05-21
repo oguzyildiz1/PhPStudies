@@ -7,29 +7,18 @@
 
 // each resistor has a resistance value.
 // hard to read
-function colorCode($color)
+declare(strict_types=1);
+
+function colorCode(string $color): int
 {
-    $array = [
+    $color_arr = [
         "black" => 0, "brown" => 1, "red" => 2, "orange" => 3, "yellow" => 4, "green" => 5, "blue" => 6,
         "violet" => 7, "grey" => 8, "white" => 9
     ];
 
-    if (in_array($color, $array)) {
-        return $array[$color];
-    } else {
-        return "no such color";
-    }
-
-    return "1";
+    return $color_arr[$color];
 }
 
-function takeInput($para1)
-{
-    $color = readline("Enter the color? ");
-    $mesaj = colorCode($color);
-    return $mesaj;
-}
+$col_name = "red";
 
-$mesaj = "";
-takeInput($mesaj);
-echo $mesaj;
+echo colorCode($col_name);
