@@ -9,7 +9,6 @@ $dosyaTip = [".png" => "image/png", ".jpg" => "image/jpg", ".jpeg" => "image/jpe
 
 print_r($_FILES);
 echo "<hr />";
-
 // print_r($_SERVER[""]);
 // echo $_SERVER["REQUEST_METHOD"];
 
