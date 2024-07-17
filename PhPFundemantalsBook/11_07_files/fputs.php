@@ -1,7 +1,7 @@
 <?php
 #fputs puts a string to the file
 
-$filename = "test2.txt";
+$filename = "test.txt";
 
 $file = fopen($filename, "w");
 

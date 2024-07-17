@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <title>AJAX</title>
+</head>
+
+<body>
+    <form id="veriGonder" onSubmit="return false">
+        <input type="text" name="adi" placeholder="Adınız">
+        <input type="text" name="soyadi" placeholder="Soyadi">
+        <button name="gonder" id="formVeri">VERİ GÖNDER</button>
+    </form>
+    <div id="veriSonucu"></div>
+
+    <script>
+        $('#formVeri').click(function () {
+            alert("hi");
+            var veriler = "selamlar dünya";
+            var ajax = $.ajax({
+                type: "GET",
+                url: "vericek3.php",
+                data: veriler,
+                success: function (sonuc) {
+                    $("#veriSonucu").html(sonuc);
+                }
+            }); // ajax bitti
+            ajax.done(function (sonucMesaj) {
+                $("#veriSonucu").html(sonucMesaj);
+            });
+        });
+    </script>
+</body>
+
+
+</html>

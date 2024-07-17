@@ -1,0 +1,17 @@
+$("#formVeri").click(function(){
+	var veriler="kulName="+$('[name="adi"]').val()+"&kulSurName="+$('[name="soyadi"]').val();
+	var ajax=$.ajax({
+		type:"GET",
+		url:"vericek3 .php",
+		data:veriler,
+		success: function(sonucMesaj){
+			 $("#veriSonucu").html(sonucMesaj);
+			}
+		});//ajax bitti
+		ajax.done(function(sonucMesaj){
+			$("#veriSonucu").html(sonucMesaj);
+			});
+		ajax.fail(function(jqXHR,textStatus){
+			$("#veriSonucu").html("Üzgünüm bir hata oluştu :"+textStatus);
+			
+			});
