@@ -16,13 +16,22 @@
         <button name="gonder" id="formVeri">VERİ GÖNDER</button>
     </form>
     <div id="veriSonucu"></div>
+    <button id="test">Test</button>
     <h1></h1>
 
     <script>
         // https://caglarbostanci.com.tr/php-ajax-kullanimi-asynchronous-javascript-and-xml/
 
-        $('#formVeri').click(function () {
+        const button1 = document.querySelector('button#test');
+        button1.onclick = logValue;
 
+        function logValue() {
+            console.log($('[name="adi"]').val());
+        }
+
+        $('#formVeri').click(function () {
+            var veriler1 = "kulName=" + $('[name="adi"]').val() + "&kulSurName=" + $('[name="soyadi"]').val();
+            console.log(veriler1);
             var veriler = {
                 mesaj: "selamlar dünya",
                 isim: "Orhan"
@@ -31,8 +40,8 @@
 
             $.ajax({
                 type: "GET",
-                url: "vericek3.php",
-                data: veriler,
+                url: "vericek2.php",
+                data: veriler1,
                 success: function (sonuc) {
                     $("#veriSonucu").html(sonuc);
                 }

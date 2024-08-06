@@ -16,10 +16,18 @@
         <button name="gonder" id="formVeri">VERİ GÖNDER</button>
     </form>
     <div id="veriSonucu"></div>
+    <button id="test">Test</button>
     <h1></h1>
 
     <script>
         // https://caglarbostanci.com.tr/php-ajax-kullanimi-asynchronous-javascript-and-xml/
+
+        const button1 = document.querySelector('button#test');
+        button1.onclick = logValue;
+
+        function logValue() {
+            console.log($('[name="adi"]').val());
+        }
 
         $('#formVeri').click(function () {
 

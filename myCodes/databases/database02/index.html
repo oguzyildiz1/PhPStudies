@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <title>Database Islemleri</title>
+</head>
+
+<body>
+
+    <button id="veriKaydet">Dosya Kayıt</button>
+    <button id="veriCek">Veri Çek</button>
+    <div id="sonuc"></div>
+
+
+    <!-- append the lines of db to an element -->
+    <!-- read the data by using foef function-->
+
+    <!-- set the script for timer -->
+    <!-- set the ajax -->
+    <script>
+        // veri okuma islemi
+        $(document).ready(function () {
+            $("#veriCek").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "getdata.php",
+                    data: {
+                        islem: "veriCek"
+                    },
+                    success: function (sonuc) {
+                        $("#sonuc").html(sonuc);
+                    }
+                });
+            });
+
+            // veri yazma
+            $("#veriKaydet").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "getdata.php",
+                    data: {
+                        islem: "veriKayit"
+                    },
+                    success: function (sonuc) {
+                        $("#sonuc").html(sonuc);
+                    }
+                });
+            });
+
+        });
+    </script>
+    <!-- display the results -->
+</body>
+
+</html>

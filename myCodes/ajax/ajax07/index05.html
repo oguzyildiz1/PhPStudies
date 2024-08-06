@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <title>AJAX</title>
+</head>
+
+<body>
+    <form id="veriGonder" onsubmit="return false">
+        <input type="text" name="adi" placeholder="Adınız">
+        <input type="text" name="soyadi" placeholder="Soyadi">
+        <button name="gonder" id="formVeri">VERİ GÖNDER</button>
+    </form>
+    <div id="veriSonucu"></div>
+    <button id="test">Test</button>
+    <h1></h1>
+
+    <script>
+        // we are going to save the input to a file
+
+        // 1- get values from name and surname
+        const name_input = document.querySelector('[name="adi"]'); // name 
+        const surname_input = document.querySelector('[name="soyadi"]');
+        const button1 = document.querySelector('[name="gonder"]'); // gonder butonu
+
+        // 2- send values to vericek5.php using ajax
+        button1.onclick = sendInfo;// fonksiyon adı
+
+        // set veriler
+        function sendInfo() {
+            let name = name_input.value;
+
+            // $.ajax({
+            //     type: "GET",
+            //     url: vericek5.php,
+            //     data: 
+            // });
+        };
+
+
+    </script>
+</body>
+
+
+</html>
