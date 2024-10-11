@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/getContact.css">
+    <title>Ajax Calls 02</title>
+</head>
+
+<body>
+    <header>
+        <h1>Contact info</h1>
+    </header>
+    <h2>People</h2>
+
+    <form id="messageForm" action="POST">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username"></input>
+            <br />
+            <label for="message">Message</label>
+            <input type="text" id="usermessage"></input>
+        </div>
+        <div>
+            <input type="submit" id="formSubmit" value="Gönder" />
+        </div>
+    </form>
+    <section id="content"></section>
+
+    <script src="./js/get-contact.js"></script>
+
+</body>
+
+
+</html>
