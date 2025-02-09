@@ -16,7 +16,7 @@ $liste = [["Oğuzhan", "Yıldız", "1983"], ["Orhan", "Yıldız", "1986"], ["Gü
     <div class="main-container">
         <table id="kisiler">
             <tr>
-                <th>isim</th>
+                <th>İsim</th>
                 <th>Soy İsim</th>
                 <th>Doğum Yılı</th>
             </tr>

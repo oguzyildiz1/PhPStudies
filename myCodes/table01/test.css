@@ -16,6 +16,12 @@ table {
     text-align: center;
 }
 
+#kisiler tr:first-child {
+    background-color: rgb(240, 240, 240) !important;
+    color: darkred;
+    font-weight: 900;
+}
+
 table tr {
     height: 50px;
 }
