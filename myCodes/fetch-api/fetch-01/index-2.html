@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+    <style>
+        table,
+        tr {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Collection Data with Fetch Api</h1>
+
+    <div>
+        <table id="table">
+            <tr>
+                <th>İsim</th>
+                <th>Soyİsim</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="test"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script><!-- jquery -->
+
+    <script>
+        //jquery
+        $(document).ready(function () {
+
+            // use await to get data in time
+            async function getData() {
+
+                //json file location
+                const url = "text.json";
+
+                // json obect will be stored here
+                let jsonVeri;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+
+                    jsonVeri = await response.json();
+                    console.log(jsonVeri);
+
+                    // return the data for use
+                    return jsonVeri;
+
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+
+            // --- take the data with fetch api ---
+
+            // if we use then, it waits until data comes otherwise data comes later 
+            // we get jsonveri as a returne data
+            getData().then(data => {
+
+                // get the length of kisiler array in data object
+                let len = data.kisiler.length;
+
+                // --- writing name, etc on table
+
+                // tr aç
+                var content = "<tr>";
+
+                for (let i = 0; i < len; i++) {
+                    // isim, soyisim ekle
+                    content += "<td>" + data.kisiler[i].adi + "</td>";
+                    content += "<td>" + data.kisiler[i].soyadi + "</td>";
+                    // tr kapat
+                    content += "</tr>";
+                }
+
+                // select table and add content
+                $("#table").append(content);
+
+            });
+        });
+
+    </script>
+</body>
+
+</html>

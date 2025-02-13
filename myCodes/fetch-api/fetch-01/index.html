@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+
+<body>
+
+    <div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // use await to get data in time
+            async function getData() {
+                const url = "text.json";
+
+                let jsonVeri;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+
+                    jsonVeri = await response.json();
+                    console.log(jsonVeri);
+
+                    // return the data for use
+                    return jsonVeri;
+
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+
+            // take the data from fetch api
+            getData().then(data => {
+
+                // datayı div icerisine ekleyeceğim
+
+                // ilk önce js'i ayarla(html)
+                let content = "<div>";
+                content += data;
+                content += "</div>";
+
+                // append metodu ile contenti div'e ekle
+                $("div").append(content);
+
+                console.log(data);
+
+            });
+
+            // console.log(json);
+
+        });
+
+
+    </script>
+</body>
+
+</html>
