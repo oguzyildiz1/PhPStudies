@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    
+
+    <h2>Get JSON Data from a PHP Server</h2>
+    <p id="demo"></p>
+
+
+    <script>
+
+        const xmlObj = new XMLHttpRequest();
+
+        xmlObj.onload = function () {
+            const myObj = JSON.parse(this.responseText);
+            document.getElementById("demo").innerHTML = myObj.name;
+        }""
+
+        xmlObj.open("GET", "server.php");
+        xmlObj.send("?QUE=1");
+
+    </script>
+
+</body>
+
+</html>
